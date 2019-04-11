@@ -32,4 +32,20 @@ var express = require('express'),
         });
     });
 
+    // Get particular product details
+    router.get('/:category/:slug', (req, res) => {
+        let slug = req.params.slug;
+        Product.findOne({slug: slug}, (err, product) => {
+            if(err) {
+                console.log(err); 
+                res.redirect('/');
+                req.flash('danger', err);
+            }
+            res.render('product', {
+                p: product,
+                title: product.title,
+            });
+        });
+    });
+
 module.exports = router;

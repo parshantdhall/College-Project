@@ -9,10 +9,11 @@ var express = require('express'),
     router.get('/', (req, res) => {
         Page.findOne({slug: 'home'}, (err, page) => {
             if(err) console.log(err);
-                res.render('index', {
-                    title: page.title,
-                    content: page.content,
-                });
+                // res.render('index', {
+                //     title: page.title,
+                //     content: page.content,
+                // });
+                res.redirect('/products/all');
         });
     });
 

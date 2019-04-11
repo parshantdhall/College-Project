@@ -19,10 +19,10 @@
             <td>
                 <%= page.title %>
             </td>
-            <td><a href="/admin/pages/edit-page/<%= page._id %>">Edit</a></td>
             <% if(page.slug == 'home'){ %>
             <td></td>
             <% }else { %>
+            <td><a href="/admin/pages/edit-page/<%= page._id %>">Edit</a></td>
             <td><a class="confirmDeletion" href="/admin/pages/delete-page/<%= page._id %>">Delete</a></td>
             <% } %>
         </tr>
