@@ -1,3 +1,15 @@
 <% include _layouts/header %>
-<%- content %>
+<div class="row products">
+    <% products.forEach((p) => { %>
+        <div class="col-xs-12 col-md-4 p">
+        <a href="/products/all/<%= p.category %>/<%= p.slug %>" class="pa">
+        <img src="/product_images/<%= p.id %>/<%= p.image %>" alt="product Image" class="pimage">
+        </a>
+        <h3><%= p.title %></h3>
+        <h4>Rs. <%= p.price %></h4>
+        <h5><%= p.category %></h5>
+        <a href="/products/all/<%= p.category %>/<%= p.slug %>" class="vd">View Details</a>
+        </div>
+    <% }) %>
+</div>
 <%include _layouts/footer%>

@@ -3,17 +3,22 @@ var express = require('express'),
 
     // Importing page models
     var Page = require('../models/page');
+    var Product = require('../models/product');
 
     /* Below route if just for the home page and for 
     all the others next route is the get route */
     router.get('/', (req, res) => {
         Page.findOne({slug: 'home'}, (err, page) => {
             if(err) console.log(err);
-                // res.render('index', {
-                //     title: page.title,
-                //     content: page.content,
-                // });
-                res.redirect('/products/all');
+            if(page) {
+                Product.find({}, (e, products) => {
+                    if(e) {console.log(e)};
+                    res.render('index', {
+                        title: page.title,
+                        products: products
+                    });
+                });
+            }
         });
     });
 
@@ -26,7 +31,7 @@ var express = require('express'),
             if(!page) {
                 res.redirect('/');
             }else {
-                res.render('index', {
+                res.render('otherPages', {
                     title: page.title,
                     content: page.content,
                 });
